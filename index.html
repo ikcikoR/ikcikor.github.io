@@ -12,10 +12,10 @@
 		var start_button = document.getElementById("start");
 		var timer = document.getElementById("timer");
 		var sekundy = 60;
-		var czasMax = 60;
+		var czasMax = 0;
 		var dolicz = function(){
 			if(!(sekundy===czasMax)){
-				sekundy++;
+				sekundy--;
 				timer.textContent = "T = -"+sekundy+" seconds";
 			}
 		}
