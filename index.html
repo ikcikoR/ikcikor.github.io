@@ -11,7 +11,7 @@
         <script>
 		var start_button = document.getElementById("start");
 		var timer = document.getElementById("timer");
-		var sekundy = 59;
+		var sekundy = 20;
 		var czasMax = 0;
 		var dolicz = function(){
 			if(!(sekundy===czasMax)){
@@ -20,12 +20,12 @@
 			}
 		}
 		var wiadomosc = function(){
-			document.getElementById("msg").textContent="Odliczanie zakończone … startujemy!!!!"
+			document.getElementById("msg").textContent="This website is a work in progress. Please cook your phone in a microwave until it explodes. Thank you for your cooperation"
 		} 
 		var stoper = function(){
 			start_button.disabled = true;
 			setInterval(dolicz,1000);
-			setTimeout(wiadomosc,czasMax*1000);
+			setTimeout(wiadomosc,sekundy*1000);
 		}
 		start_button.addEventListener("click",stoper);
         </script>
