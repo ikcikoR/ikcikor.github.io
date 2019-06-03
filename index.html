@@ -1,9 +1,33 @@
-<!Doctype HTML>
-<html lang="pl">
-	<head>
-		<title>Strona główna</title>
-	</head>
-	<body>
-		Test 2
-	</body>
+<!doctype HTML>
+<html>
+    <head>
+        <title></title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+		<button id="start"><b>START</b></button>
+		<div id="timer">T = 0 secnds</div>
+		<div id="msg"></div>
+        <script>
+		var start_button = document.getElementById("start");
+		var timer = document.getElementById("timer");
+		var sekundy = 60;
+		var czasMax = 60;
+		var dolicz = function(){
+			if(!(sekundy===czasMax)){
+				sekundy++;
+				timer.textContent = "T = -"+sekundy+" seconds";
+			}
+		}
+		var wiadomosc = function(){
+			document.getElementById("msg").textContent="Odliczanie zakończone … startujemy!!!!"
+		} 
+		var stoper = function(){
+			start_button.disabled = true;
+			setInterval(dolicz,1000);
+			setTimeout(wiadomosc,czasMax*1000);
+		}
+		start_button.addEventListener("click",stoper);
+        </script>
+    </body>
 </html>
