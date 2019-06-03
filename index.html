@@ -4,19 +4,19 @@
         <title></title>
         <meta charset="utf-8">
     </head>
-    <body style="margin-top:100px">
+    <body style="margin-top:100px;text-align:center;">
 		<div id="timer">Teh Final Countdown</div>
 		<button id="start"><b>START</b></button>
 		<div id="msg"></div>
         <script>
 		var start_button = document.getElementById("start");
 		var timer = document.getElementById("timer");
-		var sekundy = 60;
+		var sekundy = 59;
 		var czasMax = 0;
 		var dolicz = function(){
 			if(!(sekundy===czasMax)){
 				sekundy--;
-				timer.textContent = "T = -"+sekundy+" seconds";
+				timer.textContent = "T- "+sekundy;
 			}
 		}
 		var wiadomosc = function(){
