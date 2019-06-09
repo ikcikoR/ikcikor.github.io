@@ -4,30 +4,7 @@
         <title>((Idk XD</title>
         <meta charset="utf-8">
     </head>
-    <body style="margin-top:100px;text-align:center;">
-		<div id="timer" style="margin-bottom:50px">Teh Final Countdown</div>
-		<button id="start"><b>START</b></button>
-		<div id="msg"></div>
-        <script>
-		var start_button = document.getElementById("start");
-		var timer = document.getElementById("timer");
-		var sekundy = 10;
-		var czasMax = 0;
-		var dolicz = function(){
-			if(!(sekundy===czasMax)){
-				sekundy--;
-				timer.textContent = "T- "+sekundy+"s";
-			}
-		}
-		var wiadomosc = function(){
-			document.getElementById("msg").textContent="This website is a work in progress. Please cook your phone in a microwave until it explodes. Thank you for your cooperation"
-		} 
-		var stoper = function(){
-			start_button.disabled = true;
-			setInterval(dolicz,1000);
-			setTimeout(wiadomosc,sekundy*1000);
-		}
-		start_button.addEventListener("click",stoper);
+    <body>
         </script>
     </body>
 </html>
