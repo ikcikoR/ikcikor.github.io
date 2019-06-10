@@ -4,11 +4,24 @@
         <title>Brick breaker</title>
         <meta charset="utf-8">
     </head>
-    <body>
+    <body style="background-color:black;text-align:center">
+		<div id="pole" style="border-color:lime;border-style:solid;border-bottom-color:red;width:400px;height:500px">
+		</div>
 		<script>
-			var make_blok = function(xp,yp,xwp,ywp){
-				blok = {obj:new div(),x:xp,y:yp,xw:xwp,yw:ywp};
+			var make_blok = function(xp,yp,xwp,ywp,idp){
+				var blok = document.createElement("div");
+				blok.style.position="absolute";
+				blok.style.left=xp+"px";
+				blok.style.top=yp+"px";
+				blok.style.width=xwp+"px";
+				blok.style.height=ywp+"px";
+				blok.style.backgroundColor="lime";
+				blok.id=idp;
+				return(blok);
 			}
+			document.body.appendChild(make_blok(30,30,60,30,"blok1"));
+			document.body.appendChild(make_blok(30,90,60,30,"blok2"));
+			document.bodu
         </script>
     </body>
 </html>
