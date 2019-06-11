@@ -53,10 +53,10 @@
 			document.addEventListener("keyup",trackerup)
 			var playermotion = function(){
 				if(lpressed&&plansza.player.style.left.slice(0,-2)>0){
-					plansza.player.style.left=(parseFloat(plansza.player.style.left.slice(0,-2))-1)+"px";
+					plansza.player.style.left=(parseFloat(plansza.player.style.left.slice(0,-2))-2)+"px";
 				}
 				if(rpressed&&plansza.player.style.left.slice(0,-2)<xmax-60){
-					plansza.player.style.left=(parseFloat(plansza.player.style.left.slice(0,-2))+1)+"px";
+					plansza.player.style.left=(parseFloat(plansza.player.style.left.slice(0,-2))+2)+"px";
 				}
 			}
 			var ballvx = 0;
