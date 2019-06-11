@@ -1,3 +1,149 @@
+<<<<<<< HEAD
+<!doctype HTML>
+<html lang="pl">
+    <head>
+        <title>Brick breaker</title>
+        <meta charset="utf-8">
+    </head>
+    <body style="background-color:black;text-align:center;margin:0px">
+		<div id="pole" style="border-color:lime;border-style:solid;border-bottom-color:red;width:400px;height:500px">
+			<div id="monit" style="color:lime">
+				Press Spacebar to begin
+			</div>
+			<div id="wynik" style="color:lime">
+				Score: 0
+			</div>
+		</div>
+		<script>
+			var xmax = 600;
+			var ymax = 700;
+			var blokix = 8;
+			var blokiy = 5;
+			var wynik = 0;
+			blokitotal=blokix*blokiy;
+			var make_blok = function(xp,yp,xwp,ywp,idp,clp){
+				var blok = document.createElement("div");
+				blok.style.position="absolute";
+				blok.style.left=xp+"px";
+				blok.style.top=yp+"px";
+				blok.style.width=xwp+"px";
+				blok.style.height=ywp+"px";
+				blok.style.backgroundColor="lime";
+				blok.id=idp;
+				blok.class=clp;
+				return(blok);
+			}
+			var pole = document.getElementById("pole");
+			pole.style.width=xmax-3+"px";
+			pole.style.height=ymax+"px"
+			var plansza = {player:pole.appendChild(make_blok(xmax/2,ymax*4/5,60,10,"player")),ball:pole.appendChild(make_blok(xmax/2,ymax*4/5-30,10,10))}
+			var wzormaker = function(w,h){
+				wzortu=[];
+				for(var i=0;i<h;i++){
+					for(var j=0;j<w;j++){
+						wzortu[i*w+j]=pole.appendChild(make_blok(xmax/w*j,ymax/4+xmax/w/2*i,xmax/w,xmax/w/3*2,"blok_"+(i*w+j),"brick"))
+					}
+				}
+				plansza.wzor=wzortu;
+			}
+			wzormaker(blokix,blokiy);
+			var lpressed = false;
+			var rpressed = false;
+			var trackeron = function(event){
+				if(event.key=="ArrowLeft"){lpressed=true}
+				if(event.key=="ArrowRight"){rpressed=true}
+			}
+			var trackerup = function(event){
+				if(event.key=="ArrowLeft"){lpressed=false}
+				if(event.key=="ArrowRight"){rpressed=false}
+			}
+			document.addEventListener("keydown",trackeron)
+			document.addEventListener("keyup",trackerup)
+			var playermotion = function(){
+				if(lpressed&&plansza.player.style.left.slice(0,-2)>0){
+					plansza.player.style.left=(parseFloat(plansza.player.style.left.slice(0,-2))-2)+"px";
+				}
+				if(rpressed&&plansza.player.style.left.slice(0,-2)<xmax-60){
+					plansza.player.style.left=(parseFloat(plansza.player.style.left.slice(0,-2))+2)+"px";
+				}
+			}
+			var ballvx = 0;
+			var ballvy = 1;
+			var ballmotion = function(){
+				plansza.ball.style.left=(parseFloat(plansza.ball.style.left.slice(0,-2))+ballvx)+"px";
+				plansza.ball.style.top=(parseFloat(plansza.ball.style.top.slice(0,-2))+ballvy)+"px";
+			}
+			var calcmid = function(rect){
+				var x = parseFloat(rect.style.left.slice(0,-2))+parseFloat(rect.style.width.slice(0,-2))/2;
+				var y = parseFloat(rect.style.top.slice(0,-2))+parseFloat(rect.style.height.slice(0,-2))/2;
+				return([x,y]);
+			}
+			var ballcol = function(rect1,rect2){
+				if(parseFloat(rect1.style.left.slice(0,-2)) < parseFloat(rect2.style.left.slice(0,-2)) + parseFloat(rect2.style.width.slice(0,-2))&&
+				parseFloat(rect1.style.left.slice(0,-2)) + parseFloat(rect1.style.width.slice(0,-2)) > parseFloat(rect2.style.left.slice(0,-2))&&
+				parseFloat(rect1.style.top.slice(0,-2)) < parseFloat(rect2.style.top.slice(0,-2)) + parseFloat(rect2.style.height.slice(0,-2))&&
+				parseFloat(rect1.style.top.slice(0,-2)) + parseFloat(rect1.style.height.slice(0,-2)) > parseFloat(rect2.style.top.slice(0,-2))){
+					var xy1 = calcmid(rect1);
+					var xy2 = calcmid(rect2);
+					var x1 = xy1[0];
+					var y1 = xy1[1];
+					var x2 = xy2[0];
+					var y2 = xy2[1];
+					var a1 = x1-x2;
+					var b1 = y1-y2;
+					var c = Math.sqrt(a1*a1+b1*b1);
+					var a2 = a1/c;
+					var b2 = b1/c;
+					ballvx=a2;
+					ballvy=b2;
+					if(rect2.class=="brick"){
+						rect2.style.display="none";
+						plansza.wzor[rect2.id.slice(5)]=null;
+						blokitotal--;
+						wynik+=100;
+						document.getElementById("wynik").textContent="Score: "+wynik;
+					}
+				}
+			}
+			var ballcollide = function(){
+				if(plansza.ball.style.left.slice(0,-2)<=0||parseFloat(plansza.ball.style.left.slice(0,-2))+10>=xmax){
+					ballvx*=-1;
+				}
+				if(plansza.ball.style.top.slice(0,-2)<=0||parseFloat(plansza.ball.style.top.slice(0,-2))+10>=ymax){
+					ballvy*=-1;
+				}
+				ballcol(plansza.ball,plansza.player);
+				for (blo in plansza.wzor){
+					if(plansza.wzor[blo]!=null){
+						ballcol(plansza.ball,plansza.wzor[blo]);
+					}
+				}
+			}
+			var update = function(){
+				if(blokitotal==0){
+					clearInterval(tick);
+					document.getElementById("monit").textContent="You WON!";
+					document.getElementById("wynik").textContent="Your score: "+wynik+" Press F5 to restart"
+				}
+				if(plansza.ball.style.top.slice(0,-2)>ymax-30){
+					clearInterval(tick);
+					document.getElementById("monit").textContent="GAME OVER";
+					document.getElementById("wynik").textContent="Your score: "+wynik+" Press F5 to restart"
+				}
+				playermotion();
+				ballcollide();
+				ballmotion();
+			}
+			var tick;
+			var start = function(){
+				tick = setInterval(update,3);
+				document.removeEventListener("keypress",start);
+				document.getElementById("monit").textContent="";
+			}
+			document.addEventListener("keypress",start);
+        </script>
+    </body>
+=======
 <!doctype HTML>
 <html lang="pl">
     <head>
@@ -126,4 +272,5 @@
 			var tick = setInterval(update,3);
         </script>
     </body>
+>>>>>>> 625f8d113b5b3660cba5a667c24ca93e891a1062
 </html>
