@@ -28,7 +28,7 @@
 			var pole = document.getElementById("pole");
 			pole.style.width=xmax-3+"px";
 			pole.style.height=ymax+"px"
-			var plansza = {player:pole.appendChild(make_blok(30,ymax*4/5,60,10,"player")),ball:pole.appendChild(make_blok(30,300,10,10))}
+			var plansza = {player:pole.appendChild(make_blok(xmax/2,ymax*4/5,60,10,"player")),ball:pole.appendChild(make_blok(xmax/2,ymax*4/5-30,10,10))}
 			var wzormaker = function(w,h){
 				wzortu=[];
 				for(var i=0;i<h;i++){
@@ -117,7 +117,7 @@
 				ballcollide();
 				ballmotion();
 			}
-			var tick = setInterval(update,5);
+			var tick = setInterval(update,3);
         </script>
     </body>
 </html>
