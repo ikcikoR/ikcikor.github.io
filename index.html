@@ -6,12 +6,16 @@
     </head>
     <body style="background-color:black;text-align:center;margin:0px">
 		<div id="pole" style="border-color:lime;border-style:solid;border-bottom-color:red;width:400px;height:500px">
+			<div id="wynik" style="color:lime">
+				Wynik: 0
+			</div>
 		</div>
 		<script>
 			var xmax = 600;
 			var ymax = 700;
-			blokix = 7;
-			blokiy = 4;
+			var blokix = 7;
+			var blokiy = 4;
+			var wynik = 0;
 			blokitotal=blokix*blokiy;
 			var make_blok = function(xp,yp,xwp,ywp,idp,clp){
 				var blok = document.createElement("div");
@@ -92,6 +96,8 @@
 						rect2.style.display="none";
 						plansza.wzor[rect2.id.slice(5)]=null;
 						blokitotal--;
+						wynik+=100;
+						document.getElementById("wyniki").textContent="Wynik: "+wynik;
 					}
 				}
 			}
