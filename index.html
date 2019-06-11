@@ -40,7 +40,7 @@
 				wzortu=[];
 				for(var i=0;i<h;i++){
 					for(var j=0;j<w;j++){
-						wzortu[i*w+j]=pole.appendChild(make_blok(xmax/w*j,xmax/w/3*2*i,xmax/w,xmax/w/3*2,"blok_"+(i*w+j),"brick"))
+						wzortu[i*w+j]=pole.appendChild(make_blok(xmax/w*j,xmax/w/3*2*(i+3),xmax/w,xmax/w/3*2,"blok_"+(i*w+j),"brick"))
 					}
 				}
 				plansza.wzor=wzortu;
