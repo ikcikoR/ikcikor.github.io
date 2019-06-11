@@ -110,7 +110,7 @@
 				}
 			}
 			var update = function(){
-				if(blokitotal==0){
+				if(blokitotal==0||plansza.ball.style.top.slice(0,-2)>ymax-30){
 					clearInterval(tick);
 				}
 				playermotion();
