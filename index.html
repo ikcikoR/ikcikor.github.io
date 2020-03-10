@@ -5,11 +5,11 @@
         <meta charset="utf-8">
     </head>
     <body style="background-color:black;text-align:center;margin:0px">
-		<div id="pole" style="border-color:green;border-style:solid;border-bottom-color:red;width:400px;height:500px">
-			<div id="monit" style="color:green">
+		<div id="pole" style="border-color:lime;border-style:solid;border-bottom-color:red;width:400px;height:500px">
+			<div id="monit" style="color:lime">
 				Press Spacebar to begin
 			</div>
-			<div id="wynik" style="color:green">
+			<div id="wynik" style="color:lime">
 				Score: 0
 			</div>
 		</div>
@@ -27,7 +27,7 @@
 				blok.style.top=yp+"px";
 				blok.style.width=xwp+"px";
 				blok.style.height=ywp+"px";
-				blok.style.backgroundColor="green";
+				blok.style.backgroundColor="lime";
 				blok.id=idp;
 				blok.class=clp;
 				return(blok);
@@ -35,7 +35,7 @@
 			var pole = document.getElementById("pole");
 			pole.style.width=xmax-3+"px";
 			pole.style.height=ymax+"px"
-			var plansza = {player:pole.appendChild(make_blok(xmax/2-50,ymax*4/5,100,10,"player")),ball:pole.appendChild(make_blok(xmax/2,ymax*4/5-30,10,10))}
+			var plansza = {player:pole.appendChild(make_blok(xmax/2,ymax*4/5,60,10,"player")),ball:pole.appendChild(make_blok(xmax/2,ymax*4/5-30,10,10))}
 			var wzormaker = function(w,h){
 				wzortu=[];
 				for(var i=0;i<h;i++){
@@ -62,7 +62,7 @@
 				if(lpressed&&plansza.player.style.left.slice(0,-2)>0){
 					plansza.player.style.left=(parseFloat(plansza.player.style.left.slice(0,-2))-2)+"px";
 				}
-				if(rpressed&&plansza.player.style.left.slice(0,-2)<xmax-100){
+				if(rpressed&&plansza.player.style.left.slice(0,-2)<xmax-60){
 					plansza.player.style.left=(parseFloat(plansza.player.style.left.slice(0,-2))+2)+"px";
 				}
 			}
