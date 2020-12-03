@@ -5,7 +5,7 @@
         <meta charset="utf-8">
     </head>
     <body style="background-color:black;text-align:center;margin:0px">
-		<div id="pole" style="border-color:lime;border-style:solid;border-bottom-color:red;width:400px;height:500px">
+		<div id="pole" style="border-style:solid;border-bottom-color:red;width:400px;height:500px">
 			<div id="monit" class="colorme">
 				Press Spacebar to begin
 			</div>
@@ -22,8 +22,10 @@
 			var color = "rgb(255,0,255)";
 			var colormeobjects = document.getElementsByClassName("colorme");
 			for(var i=0;i<colormeobjects.length;i++){
-				colormeobjects[0].style.baackgroundColor=color;
+				colormeobjects[0].style.backgroundColor=color;
+				colormeobjects[0].style.color=color;
 			}
+			document.getElementById("pole").style.borderColor=color;
 			blokitotal=blokix*blokiy;
 			var make_blok = function(xp,yp,xwp,ywp,idp,clp){
 				var blok = document.createElement("div");
