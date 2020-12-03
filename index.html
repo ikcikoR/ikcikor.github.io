@@ -6,10 +6,10 @@
     </head>
     <body style="background-color:black;text-align:center;margin:0px">
 		<div id="pole" style="border-color:lime;border-style:solid;border-bottom-color:red;width:400px;height:500px">
-			<div id="monit" style="color:lime">
+			<div id="monit" class="colorme">
 				Press Spacebar to begin
 			</div>
-			<div id="wynik" style="color:lime">
+			<div id="wynik" class="colorme">
 				Score: 0
 			</div>
 		</div>
@@ -19,6 +19,11 @@
 			var blokix = 8;
 			var blokiy = 5;
 			var wynik = 0;
+			var color = "rgb(255,0,255)";
+			var colormeobjects = document.getElementsByClassName("colorme");
+			for(var i=0;i<colormeobjects.length;i++){
+				colormeobjects[0].style.baackgroundColor=color;
+			}
 			blokitotal=blokix*blokiy;
 			var make_blok = function(xp,yp,xwp,ywp,idp,clp){
 				var blok = document.createElement("div");
@@ -27,7 +32,7 @@
 				blok.style.top=yp+"px";
 				blok.style.width=xwp+"px";
 				blok.style.height=ywp+"px";
-				blok.style.backgroundColor="lime";
+				blok.style.backgroundColor=color;
 				blok.id=idp;
 				blok.class=clp;
 				return(blok);
